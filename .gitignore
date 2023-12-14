@@ -1,0 +1,30 @@
+# Node.js dependencies
+node_modules/
+
+# Server-side logs
+logs/
+*.log
+
+# Client-side build
+/build/
+
+# Environment variables
+.env
+
+# Server-side dependencies
+/server/node_modules/
+
+# Client-side dependencies
+/client/node_modules/
+
+# Production build artifacts
+/server/build/
+/client/build/
+
+# IDE and editor files
+.idea/
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
