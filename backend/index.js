@@ -5,7 +5,7 @@ import { Book } from './models/bookModel.js'
 
 const app = express()
 
-// Middlewate for parsing request body.
+// Middleware for parsing request body.
 app.use(express.json());
 
 app.get('/', (req, res) => {
