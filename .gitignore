@@ -5,6 +5,9 @@ node_modules/
 logs/
 *.log
 
+# Vite build output
+/dist/
+
 # Client-side build
 /build/
 
@@ -12,14 +15,14 @@ logs/
 .env
 
 # Server-side dependencies
-/server/node_modules/
+/backend/node_modules/
 
 # Client-side dependencies
-/client/node_modules/
+/frontend/node_modules/
 
 # Production build artifacts
-/server/build/
-/client/build/
+/backend/build/
+/frontend/build/
 
 # IDE and editor files
 .idea/
