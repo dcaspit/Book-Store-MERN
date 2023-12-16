@@ -19,17 +19,17 @@ app.get('/', (req, res) => {
 // We can use it in two ways:
 // Option 1: Allow All origins with default of cors(*)
 // Like this we have default cors of star that allows eveything.
-//app.use(cors());
+app.use(cors());
 
 // Option 2: Allowing custom origins. that way we can have a better control
 // For this we can use an object in cors
-app.use(
-    cors({
-        origin: 'http://localhost:3000', // allowing communication with localhost
-        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing only this method calls 
-        allowedHeaders: ['Content-Type'], // Headers we allowing to recieve;
-    })
-);
+// app.use(
+//     cors({
+//         origin: 'http://localhost:3000', // allowing communication with localhost
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing only this method calls 
+//         allowedHeaders: ['Content-Type'], // Headers we allowing to recieve;
+//     })
+// );
 
 
 
