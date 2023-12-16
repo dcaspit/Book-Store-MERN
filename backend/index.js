@@ -1,7 +1,9 @@
 import express, { response } from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
-import { Book } from './models/bookModel.js'
+import { Book } from './models/bookModel.js';
+import booksRoute from './routes/booksRoute.js';
+import cors from 'cors';
 
 const app = express()
 
@@ -13,33 +15,25 @@ app.get('/', (req, res) => {
     return res.status(234).send('Welcome to my BOOK Store')
 })
 
-// Route for Save a new Book. post method to create a new resource
-app.post('/books', async (req, res) => {
-    try{
-        if(
-            !req.body.title ||
-            !req.body.author ||
-            !req.body.publishYear
-        ){
-            return res.status(400).send({
-                message: 'Send all required fields: title, author, publishYear'
-            })
-        }
+// Middleware for handling CORS Policy (Security for web commuinication)
+// We can use it in two ways:
+// Option 1: Allow All origins with default of cors(*)
+// Like this we have default cors of star that allows eveything.
+//app.use(cors());
 
-        const newBook = {
-            title: req.body.title,
-            author: req.body.author,
-            publishYear: req.body.publishYear
-        };
+// Option 2: Allowing custom origins. that way we can have a better control
+// For this we can use an object in cors
+app.use(
+    cors({
+        origin: 'http://localhost:3000', // allowing communication with localhost
+        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing only this method calls 
+        allowedHeaders: ['Content-Type'], // Headers we allowing to recieve;
+    })
+);
 
-        const book = await Book.create(newBook);
 
-        return res.status(201).send(book);
-    }catch(error) {
-        console.log(error.message);
-        res.status(500).send({message: error.message});
-    }
-});
+
+app.use('/books', booksRoute);
 
 mongoose
     .connect(mongoDBURL)
